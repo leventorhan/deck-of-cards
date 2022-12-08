@@ -23,38 +23,36 @@ class Deck extends Component {
             if (!cardRes.data.success) {
                 throw new Error('No Card Remaining!')
             }
-        
-        
-        console.log(cardRes.data);
-        let card = cardRes.data.cards[0];
-        this.setState(st => ({
-            drawn: [
-                ...st.drawn,
-                {
-                    id: card.code,
-                    image: card.image,
-                    name: `${card.suit} of ${card.value}`
-                }
-            ]
-        }));
-    } catch(err){
-        alert(err);
-    }
-}
 
-render() {
-    const cards = this.state.drawn.map(c =>(
-        <Card key ={c.id} name={c.name} image={c.image} />
-    ));
-    return (
-        <div className='Deck'>
-            <h1 className='Deck-title'>◆ Card Dealer ◆</h1>
-            <h2 className='Deck-title subtitle'>◆ A little demo made with React ◆</h2>
-            <button className='Deck-btn' onClick={this.getCard}>Get Card!</button>
-            <div className='Deck-cardarea'>{cards}</div>
-        </div>
-    )
-}
+            let card = cardRes.data.cards[0];
+            this.setState(st => ({
+                drawn: [
+                    ...st.drawn,
+                    {
+                        id: card.code,
+                        image: card.image,
+                        name: `${card.suit} of ${card.value}`
+                    }
+                ]
+            }));
+        } catch (err) {
+            alert(err);
+        }
+    }
+
+    render() {
+        const cards = this.state.drawn.map(c => (
+            <Card key={c.id} name={c.name} image={c.image} />
+        ));
+        return (
+            <div className='Deck'>
+                <h1 className='Deck-title'>◆ Card Dealer ◆</h1>
+                <h2 className='Deck-title subtitle'>◆ A little demo made with React ◆</h2>
+                <button className='Deck-btn' onClick={this.getCard}>Get Card!</button>
+                <div className='Deck-cardarea'>{cards}</div>
+            </div>
+        )
+    }
 }
 
 
